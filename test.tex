@@ -1,0 +1,127 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage[margin = 2.54cm]{geometry}
+\usepackage{float}
+\usepackage{mwe}
+\usepackage{siunitx}
+\usepackage{graphicx}
+\usepackage{enumitem}
+\usepackage{amsmath}
+\usepackage{subcaption}
+\usepackage{mwe}
+\usepackage{listings}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{color} %red, green, blue, yellow, cyan, magenta, black, white
+\definecolor{MyDarkGreen}{rgb}{0.0,0.4,0.0}
+\definecolor{mygreen}{RGB}{28,172,0} % color values Red, Green, Blue
+\definecolor{mylilas}{RGB}{170,55,241}
+\usepackage{titling}
+\usepackage{xcolor}
+\usepackage{tikz-feynman}
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric, arrows}
+\graphicspath{{c:/Users/Ran Tao/Desktop/PhD/First year report}}
+\begin{document}
+
+\section{Review of odd-frequency triplet pairing theory}
+
+\noindent Following Matsumoto et al.\cite{Matsumoto}, We start with the four-component notation $\mathbf{\Psi}_{\mathbf{k}}(\tau)=(c_{\mathbf{k}\uparrow}(\tau), c_{\mathbf{k}\downarrow}(\tau), c_{-\mathbf{k}\uparrow}^{\dag}(\tau), c_{-\mathbf{k}\downarrow}^{\dag}(\tau))$ with electron Green's function as a 4 by 4 matrix $\textbf{G}(\mathbf{k};\tau)=-\langle T_{\tau}\mathbf{\Psi_{k}}(\tau)\mathbf{\Psi_{k}}(0)^{\dag}\rangle$. Transforming into Matsubara frequency space, Dyson's equation reads $\textbf{G}(\textbf{k},i\omega_{n})^{-1}=i\omega_{n}-\textbf{H}$ where $\textbf{H}$ is the first quantized Hamiltonian matrix on the subspace spanned by entries in $\boldsymbol\Psi_\textbf{k}(i\omega_{n})$. Specifically, for a dispersion  $\epsilon_{\textbf{k}}$ and in magnetic field $h$, we have
+
+\begin{equation} \label{eq1}
+    \textbf{G}(\textbf{k},i\omega_{n})=[i\omega_{n}-\epsilon_{\mathbf{k}}\boldsymbol\rho_{3}-h\boldsymbol\rho_{3}\boldsymbol\sigma_{3}-\boldsymbol\Sigma(i\omega_{n})]^{-1}
+\end{equation}
+
+\noindent where $\boldsymbol\rho_{\alpha}$ and $\boldsymbol\sigma_{\alpha}$ for $\alpha=1,2,3$ are the Pauli matrices for the particle-hole and spin spaces respectively. $\omega_{n}$ is the fermionic Matsubara frequency, and $\boldsymbol\Sigma(i\omega_{n})$ is the self-energy. For a phonon-mediated interaction, we also have the following expression of the self-energy from Feynman diagrams:
+
+\begin{equation} \label{eq2}
+    \boldsymbol\Sigma(i\omega_{n})=-g^{2}\frac{N_{p}T}{\Omega}\sum_{\omega_{m}}D(i\omega_{n}-i\omega_{m})\sum_{\textbf{k}}\boldsymbol\rho_{3}\textbf{G}(\textbf{k},i\omega_{m})\boldsymbol\rho_{3}
+\end{equation}
+
+\noindent $T$ is the temperature, $N_{p}$ is the number of phonon sites, $\Omega$ is the volume of the system, and $g$ is the coupling constant for the interaction. Given equations \ref{eq1} and \ref{eq2}, we can then consider the form of $\boldsymbol{\Sigma}(i\omega_{n})$ starting from its symmetries.
+
+\begin{figure}[h]
+    \[
+        \vcenter{\hbox{\begin{tikzpicture}
+                    \begin{feynman}
+                        \vertex (i);
+                        \vertex [right=6cm of i] (o);
+                        \diagram*{
+                        (i) --[double,double distance=0.3ex,thick,with arrow=0.5,arrow size=0.15em] (o),
+                        (o) --[photon,looseness=2] (i),
+                        };
+                    \end{feynman}
+                \end{tikzpicture}}}
+    \]
+    \caption{Feynman diagram for electron self-energy. The double line is the dressed electron Green's function. The wavy line is the phonon propagator. The two interaction vertices each contributes $-ig\boldsymbol\rho_{3}$. The $\boldsymbol\rho_{3}$ factor comes from a difference in the order of creation and annihilation operators at the interaction vertex; i.e., at the vertex we have interaction $\sim \langle\phi\boldsymbol\Psi^{\dag}\boldsymbol\Psi\rangle$ and since the physical interaction comes from the $\langle\phi c^{\dag}c\rangle$ term we need to introduce a negative sign for the hole space terms that contribute $\langle\phi c c^{\dag}\rangle$.}
+    \label{Figure 1}
+\end{figure}
+
+\subsection{Symmetries of the $s$-wave self-energy}
+
+\noindent We follow the conventions of Kusunose et al.\cite{Kusunose} here. Splitting the self-energy into 2 by 2 blocks, the top right and bottom left blocks can be identified as the matrix gap functions $\boldsymbol\Delta(k)$ and $\overline{\boldsymbol\Delta}(k)$ respectively, where $k=(\textbf{k}, i\omega_{n})$. $\boldsymbol\Delta(k)$ has the same symmetry as the anomalous Green's function $\textbf{F}_{s_{1}s_{2}}(k)=-\langle T_{\tau}c_{s_{1}}(k)c_{s_{2}}(-k)\rangle$, so by fermionic anticommutation relations of the annihilation operators and applying the same logic with $\overline{\boldsymbol\Delta}(k)$ we have
+
+\begin{equation} \label{eq3}
+    \begin{split}
+        \boldsymbol\Delta(k)=-\boldsymbol\Delta(-k)^{T} \\ \overline{\boldsymbol\Delta}(k)=-\overline{\boldsymbol\Delta}(-k)^{T}
+    \end{split}
+\end{equation}
+
+\noindent Furthermore, the solution enjoys a symmetry in space and time. We will be focusing on $s$-wave pairing, so the matrix gap functions will be even in $\textbf{k}$, but the exchange antisymmetry of fermionic fields mean that singlet pairs are symmetric in time, while the triplet pairs are antisymmetric. Therefore, we have
+
+\begin{equation} \label{eq4}
+    \begin{split}
+        \boldsymbol\Delta_{s}(\textbf{k},i\omega_{n})=\boldsymbol\Delta_{s}(-\textbf{k},i\omega_{n})=\boldsymbol\Delta_{s}(\textbf{k},-i\omega_{n}) \\
+        \boldsymbol\Delta_{t}(\textbf{k},i\omega_{n})=\boldsymbol\Delta_{t}(-\textbf{k},i\omega_{n})=-\boldsymbol\Delta_{t}(\textbf{k},-i\omega_{n})
+    \end{split}
+\end{equation}
+
+\noindent where $\boldsymbol\Delta_{s}$ and $\boldsymbol\Delta_{t}$ are the singlet and triplet components. $\overline{\boldsymbol\Delta_{s}}$ and $\overline{\boldsymbol\Delta_{t}}$ also satisfies the same relations. Combining equations \ref{eq3} and \ref{eq4} we can thus conclude that $\Delta_{s}(k)$ is antisymmetric and $\Delta_{t}(k)$ is symmetric.
+
+\medskip
+\noindent So far we left out the particle-hole symmetry which is of great importance in the Nambu formalism. Because of the form of $\boldsymbol\Psi_{\textbf{k}}(\tau)$, $(\boldsymbol\Psi_{\textbf{k}}(\tau)^{\dag})^{T} = \boldsymbol\rho_{1}\Psi_{-\textbf{k}}(\tau)$. Therefore, for mean field Hamiltonians like the Bogoliubov-de-Gennes model where the Hamiltonian $H$ can be written as $H=\sum_{\textbf{k}}\boldsymbol\Psi_{\textbf{k}}^{\dag}\textbf{H}_{\textbf{k}}\boldsymbol\Psi_{\textbf{k}}$ (the dependence on imaginary time is suppressed for now), we can rewrite the Hamiltonian as
+
+\begin{equation} \label{eq5}
+    \begin{split}
+        H & =\sum_{\textbf{k}} \boldsymbol{\Psi}_{\textbf{k}}^{\dag}\textbf{H}_{\textbf{k}}\boldsymbol{\Psi}_{\textbf{k}} \\
+        & =\sum_{\textbf{k}}\boldsymbol{\Psi}_{-\textbf{k}}^{T}\boldsymbol{\rho}_{1}^{T}\textbf{H}_{\textbf{k}}\boldsymbol{\rho}_{1}(\boldsymbol{\Psi}_{-\textbf{k}}^{\dag})^{T} \\
+        & =-\sum_{\textbf{k}}\boldsymbol{\Psi}_{-\textbf{k}}^{\dag}\boldsymbol{\rho}_{1}^{T}\textbf{H}_{\textbf{k}}^{T}\boldsymbol{\rho}_{1}\boldsymbol{\Psi}_{-\textbf{k}} \\
+        & =-\sum_{\textbf{k}}\boldsymbol{\Psi}_{-\textbf{k}}^{\dag}\boldsymbol{\rho}_{1}\textbf{H}_{\textbf{k}}^{\ast}\boldsymbol{\rho}_{1}\boldsymbol{\Psi}_{-\textbf{k}}
+    \end{split}
+\end{equation}
+
+\noindent where we've used ${\rho}_{1}$ is symmetric and $\textbf{H}_{\textbf{k}}$ is Hermitian in the last line. In the third line we took the transpose of the second line. Since $H$ is a scalar, it is invariant under transpose and we only get an additional minus sign from exchanging $\boldsymbol{\Psi}_{\textbf{-k}}$ and $\boldsymbol{\Psi}_{\textbf{-k}}^{\dag}$. Hence, we arrrive at the particle-hole symmetry: $\boldsymbol{\rho}_{1}\textbf{H}_{\textbf{k}}^{\ast}\boldsymbol{\rho}_{1}=-\textbf{H}_{-\textbf{k}}$. However, transforming $\textbf{H}_{\textbf{k}}$ into Matsubara frequency space we will have to take into account whether the off-diagonal entries of $H$ are even or odd in Matsubara frequency. Specifically, as we argued in setting up for equation \ref{eq1}, the off-diagonal entries in $\textbf{H}_{\textbf{k}}(i\omega_{n})$ can be identified as the off-diagonal entries in $\boldsymbol{\Sigma}(i\omega_{n})$, which are part of the matrix gap functions. Therefore, following Matsumoto et al., we generalize the particle-hole symmetry to the following relation between the matrix gap functions:
+
+\begin{equation} \label{eq6}
+    \overline{\boldsymbol{\Delta}}(k)=-\phi\boldsymbol{\Delta}(k)^{\ast}
+\end{equation}
+
+\noindent where we choose $\phi=+1$ for pure frequency-even superconductivity and $\phi=-1$ for pure frequency-odd superconductivity. When we have mixed components then $\phi$ is determined by the dominant component with the larger gap magnitude.
+
+\subsection{Field-induced triplet component}
+
+\noindent Focusing on the off-diagonal entries of $\boldsymbol{\Sigma}(i\omega_{n})$, we note that the usual $s$-wave singlet pairing state will contribute a component $\propto \boldsymbol\rho_{2}\boldsymbol\sigma_{2}$\cite{SigristUeda}. This also means there is a $\boldsymbol\rho_{2}\boldsymbol\sigma_{2}$ component in $\textbf{G}(\textbf{k}, i\omega_{n})$ by equation \ref{eq1}. However, when we compare the product of $\textbf{G}(\textbf{k}, i\omega_{n})$ and the terms inside the square bracket in equation \ref{eq1} with the identity matrix, the terms produced by multiplying the singlet pairing component and the Zeeman term $-h\boldsymbol\rho_{3}\boldsymbol\sigma_{3}$ must be cancelled by another component in $\boldsymbol\Sigma(i\omega_{n})\propto\boldsymbol\rho_{3}\boldsymbol\sigma_{3}\boldsymbol\rho_{2}\boldsymbol\sigma_{2}\propto\boldsymbol\rho_{1}\boldsymbol\sigma_{1}$. By comparing the off-diagonal entries in self-energy to the form of gap functions of various pairings, we identify the $\boldsymbol\rho_{1}\boldsymbol\sigma_{1}$ component induced by field as the contribution from a triplet pairing state with its $\textbf{d}(\textbf{k})$ vector pointing in the z-direction\cite{SigristUeda}. Since the product of this triplet component with the Zeeman term is $\propto\boldsymbol\rho_{3}\boldsymbol\sigma_{3}\boldsymbol\rho_{1}\boldsymbol\sigma_{1}\propto\boldsymbol\rho_{2}\boldsymbol\sigma_{2}$, we don't need to add in further components to make the solution complete. For an $s$-wave superconductor, we can thus decompose the anomalous self-energy as
+
+\begin{equation} \label{eq7}
+    \boldsymbol{\Sigma}_{\Delta}(i\omega_{n})=\Delta_{s}\boldsymbol\rho_{2}\boldsymbol\sigma_{2}+i\Delta_{t}\boldsymbol\rho_{1}\boldsymbol\sigma_{1}
+\end{equation}
+
+\noindent where we left out the terms renormalizing Matsubara frequency and the magnetic field. $\Delta_{s}$ and $\Delta_{t}$ are the scalar gaps for the singlet and triplet components respectively, and the $i$ factor is chosen so that both of the gaps can be real. The intuitive explanation for the field-induced triplet term offered by Matsumoto et al. is that in a magnetic field the total spin $S$ of an electron pair is not conserved, so only the spin along field $S_{z}$ is a good quantum number. We started with a pure frequency-even singlet superconductor at zero field, but as we turn on field, the Zeeman term will mix the singlet and the triplet $S_{z}=0$ component. For a triplet superconductor, the net average spin is $i\textbf{d}\times\textbf{d}^{\ast}$\cite{SigristUeda}, so our triplet component with $\textbf{d}$ along the $z$-direction will not generate a spin along $z$ and it is precisely the $S_{z}=0$ component that gets mixed in for $h \neq 0$.
+
+\subsection{Phase difference and effect on $T_{c}$}
+
+\noindent In equation \ref{eq7} we have chosen to put a $\frac{\pi}{2}$ phase difference between the triplet and singlet components. This is because from our analysis of the symmetries, we know that the triplet matrix gap function must be symmetric, while the singlet is antisymmetric. Further, since we know that zero-field state is a pure singlet state, it is safe to assume the singlet component will dominate in field and we can take $\phi=+1$ in equation \ref{eq6}. Starting with complex $\Delta_{s}$ and $\Delta_{t}$ in equation \ref{eq7} and imposing the above symmetries, we find $\Delta_{s}^{\ast}=\Delta_{s}$ and $\Delta_{t}^{\ast}=\Delta_{t}$, so by extracting an $i$ factor out in front, the scalar gap functions in equation \ref{eq7} can be taken to be real. This factor of $i$ turns out to have important ramifications on the transition temperature. Considering the self-consistent solution of the Eliashberg equation, in magnetic field the convolution kernel has $(-\Delta_{s}+i\Delta_{t})^{2}$ in place of just $(-\Delta_{s})^{2}$, so we effectively see less of a real gap ($\Delta_{s}$ to $\sqrt{\Delta_{s}^{2}-\Delta_{t}^{2}}$) and hence the transition temperature is suppressed\cite{Matsumoto}. Similar suppression of the critical field was also seen by Matsumoto et al.
+
+\begin{thebibliography}{9}
+    \bibitem{SigristUeda}
+    Sigrist, M., Ueda, K., 1991. ``Phenomenological theory of unconventional superconductivity'' \textit{Rev. Mod. Phys.}, \textbf{63}, 239.
+
+    \bibitem{Matsumoto}
+    Matsumoto, M., Koga, M., Kusunose, H., 2012. ``Coexistence of even- and odd-frequency superconductivities under broken time-reversal symmetry'' \textit{J. Phys. Soc. Jpn.}, \textbf{81}, 033702.
+
+    \bibitem{Kusunose}
+    Kusunose, H., Fuseya, Y., Miyake, K., 2011. ``On the puzzle of odd-frequency superconductivity'' \textit{J. Phys. Soc. Jpn.}, \textbf{80}, 044711.
+
+    \bibitem{Sato}
+    Sato, M., Ando, Y., 2017. ``Topological superconductors: a review'' \textit{Rep. Prog. Phys.}, \textbf{80}, 076501.
+
+\end{thebibliography}
+\end{document}
